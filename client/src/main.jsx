@@ -1,5 +1,9 @@
 // main.jsx
 import React from 'react'
+ 
+// client/src/main.jsx or index.js
+import 'leaflet/dist/leaflet.css';
+
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'

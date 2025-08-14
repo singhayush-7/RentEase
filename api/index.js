@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import { error } from 'console';
 import { STATUS_CODES } from 'http';
 import listingRouter from './routes/listing.route.js';
+ 
 dotenv.config()
 const app=express()
  app.use(cookieParser());
@@ -32,6 +33,7 @@ mongoose.connect(process.env.MONGO)
  app.use('/api/auth', authRoutes);
 app.use('/api/listing', listingRouter);
 app.use('/api/upload', uploadRoute);
+ 
  app.use((err,req,res,next)=>{
   const statusCode=err.statusCode||500;
   const message =err.message|| 'internal server ERRor';

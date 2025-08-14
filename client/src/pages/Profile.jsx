@@ -58,7 +58,7 @@ const handleFileUpload = async (file) => {
         method: 'POST',
         body: formDataToSend,
       }
-    );
+    ); 
 
     const data = await res.json();
     if (data.secure_url) {

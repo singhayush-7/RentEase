@@ -2,6 +2,10 @@
 import { useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Swiper, SwiperSlide } from 'swiper/react'; // ✅ correct
+
+ 
+import MapView from '../components/Mapview';
+
 import {
   FaBath,
   FaBed,
@@ -16,9 +20,10 @@ import {Navigation} from 'swiper/modules';
 import 'swiper/css/bundle'
 import { useSelector } from 'react-redux';
 import Contact from '../components/Contact';
-function Listing() {
+function Listing( ) {
   SwiperCore.use({Navigation})
   const [listing,setListing]=useState(null);
+  
    const [loading,setLoading]=useState(true);
     const [error,setError]=useState(false);
      const [copied, setCopied] = useState(false);
@@ -128,6 +133,7 @@ function Listing() {
     <span className="font-semibold text-gray-900">Description - </span>
     {listing.description}
   </p>
+  
 
   {/* Features list */}
   <ul className="text-gray-900 font-medium text-sm flex flex-wrap items-center gap-3 sm:gap-5 mt-3">
@@ -152,6 +158,9 @@ function Listing() {
       {listing.furnished ? 'Furnished' : 'Unfurnished'}
     </li>
   </ul>
+  <div>
+     <MapView address={listing.address} />
+  </div>
 {currentUser && listing?.userRef !== currentUser._id && !contact && (
   <button onClick={()=>setContact(true)} className='bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 p-3'>
     Contact landlord
