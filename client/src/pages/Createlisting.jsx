@@ -279,7 +279,8 @@ export default function Createlisting() {
                 />
                  
                {formData.type === 'rent' && (
-                  <span className='text-xs'>($ / month)</span>
+                  <span className='text-xs'>(₹ 
+/ month)</span>
                 )}
               </div>
 
@@ -297,7 +298,8 @@ export default function Createlisting() {
                 />
                 
                   {formData.type === 'rent' && (
-                    <span className='text-xs'>($ / month)</span>
+                    <span className='text-xs'>(₹
+ / month)</span>
                   )}
               </div>
                 )}
