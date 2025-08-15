@@ -9,31 +9,37 @@ import cookieParser from 'cookie-parser';
 import { error } from 'console';
 import { STATUS_CODES } from 'http';
 import listingRouter from './routes/listing.route.js';
- 
+ import path from 'path';
 dotenv.config()
+const __dirname=path.resolve();
 const app=express()
  app.use(cookieParser());
  app.use(express.json());
 app.use(
   cors({
-    origin: 'http://localhost:5173', // ✅ frontend origin
-    credentials: true,               // ✅ allow cookies
+    origin: 'http://localhost:5173',  
+    credentials: true,                
   })
 )
  
 
 mongoose.connect(process.env.MONGO)
   .then(() => {
-    console.log('✅ Connected to MongoDB');
+    console.log(' Connected to MongoDB');
   })
   .catch((error) => {
-    console.error('❌ Connection error:', error);
+    console.error('Connection error:', error);
   });
  app.use('/api/user',userRoutes );
  app.use('/api/auth', authRoutes);
 app.use('/api/listing', listingRouter);
 app.use('/api/upload', uploadRoute);
- 
+app.use(express.static(path.join(__dirname, '/client/dist')));
+
+app.get(/.*/, (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
+});
+
  app.use((err,req,res,next)=>{
   const statusCode=err.statusCode||500;
   const message =err.message|| 'internal server ERRor';
