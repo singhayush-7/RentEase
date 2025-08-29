@@ -28,7 +28,7 @@ export default function Createlisting() {
 
   console.log(formData);
 
-  const uploadImage = async (file) => {
+const uploadImage = async (file) => {
   const formData = new FormData();
   formData.append('image', file);
 
@@ -36,6 +36,8 @@ export default function Createlisting() {
     method: 'POST',
     body: formData,
   });
+
+  if (!res.ok) throw new Error('Image upload failed');
 
   const data = await res.json();
   return data.imageUrl;
