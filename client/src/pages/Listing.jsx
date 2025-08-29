@@ -99,10 +99,10 @@ function Listing( ) {
   <p className="text-3xl font-bold text-gray-800">
     {listing.name} -{' '}
     <span className="text-indigo-600">
-      $
+     ₹ 
       {listing.offer
-        ? listing.discountPrice.toLocaleString('en-US')
-        : listing.regularPrice.toLocaleString('en-US')}
+        ? listing.discountPrice.toLocaleString('en-IN')
+        : listing.regularPrice.toLocaleString('en-IN')}
       {listing.type === 'rent' && ' / month'}
     </span>
   </p>
