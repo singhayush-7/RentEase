@@ -34,11 +34,13 @@ export default function Createlisting() {
 
    const API_URL = import.meta.env.VITE_API_URL;
 
-const res = await fetch(`${API_URL}/api/upload`, {
-  method: 'POST',
-  body: formData,
-});
-
+const res = await fetch(
+  `${import.meta.env.VITE_BACKEND_URL}/api/upload`,
+  {
+    method: 'POST',
+    body: formData,
+  }
+);
 
 
     const data = await res.json();
