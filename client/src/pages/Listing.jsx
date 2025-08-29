@@ -96,16 +96,16 @@ function Listing( ) {
     <div className="flex flex-col max-w-4xl mx-auto px-4 sm:px-6 md:px-8 py-6 my-10 gap-6 rounded-lg shadow-lg bg-white border border-gray-200">
   {/* Title + Price */}
  
-  <p className="text-3xl font-bold text-gray-800">
-    {listing.name} -{' '}
-    <span className="text-indigo-600">
-     ₹ 
-      {listing.offer
-        ? listing.discountPrice.toLocaleString('en-IN')
-        : listing.regularPrice.toLocaleString('en-IN')}
-      {listing.type === 'rent' && ' / month'}
-    </span>
-  </p>
+<p className="text-3xl font-bold text-gray-800">
+  {listing.name} -{' '}
+  <span className="text-indigo-600">
+    ₹
+    {listing.offer
+      ? Number(listing.discountPrice).toLocaleString('en-IN')
+      : Number(listing.regularPrice).toLocaleString('en-IN')}
+    {listing.type === 'rent' && ' / month'}
+  </span>
+</p>
   
   {/* Address */}
    
@@ -117,16 +117,16 @@ function Listing( ) {
 
 
   {/* Offer badges */}
-  <div className="flex gap-4 mt-2">
-    <p className="bg-indigo-700 w-full max-w-[200px] text-white text-center py-1 px-3 rounded-md shadow-md">
-      {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
+<div className="flex gap-4 mt-2">
+  <p className="bg-indigo-700 w-full max-w-[200px] text-white text-center py-1 px-3 rounded-md shadow-md">
+    {listing.type === 'rent' ? 'For Rent' : 'For Sale'}
+  </p>
+  {listing.offer && (
+    <p className="bg-green-700 w-full max-w-[200px] text-white text-center py-1 px-3 rounded-md shadow-md">
+      ₹{(Number(listing.regularPrice) - Number(listing.discountPrice)).toLocaleString('en-IN')} OFF
     </p>
-    {listing.offer && (
-      <p className="bg-green-700 w-full max-w-[200px] text-white text-center py-1 px-3 rounded-md shadow-md">
-        ${+listing.regularPrice - +listing.discountPrice} OFF
-      </p>
-    )}
-  </div>
+  )}
+</div>
 
   {/* Description */}
   <p className="text-gray-700 mt-2">
