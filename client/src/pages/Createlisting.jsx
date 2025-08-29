@@ -32,10 +32,13 @@ export default function Createlisting() {
     const formData = new FormData();
     formData.append('image', file);
 
-    const res = await fetch('http://localhost:3000/api/upload', {
+   const API_URL = import.meta.env.VITE_API_URL;
+
+const res = await fetch(`${API_URL}/api/upload`, {
   method: 'POST',
   body: formData,
 });
+
 
 
     const data = await res.json();
