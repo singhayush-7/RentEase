@@ -29,24 +29,18 @@ export default function Createlisting() {
   console.log(formData);
 
   const uploadImage = async (file) => {
-    const formData = new FormData();
-    formData.append('image', file);
+  const formData = new FormData();
+  formData.append('image', file);
 
-   const API_URL = import.meta.env.VITE_API_URL;
-
-const res = await fetch(
-  `${import.meta.env.VITE_BACKEND_URL}/api/upload`,
-  {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
     method: 'POST',
     body: formData,
-  }
-);
+  });
 
+  const data = await res.json();
+  return data.imageUrl;
+};
 
-    const data = await res.json();
-      
-    return data.imageUrl;
-  }; 
  
 
   const handleImageSubmit = async (e) => {
@@ -118,18 +112,16 @@ const res = await fetch(
         return setError('Discount price must be lower than regular price');
        setLoading(true);
       setError(false);
-       const res = await fetch('/api/listing/create', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          
-        },
-          credentials: 'include',
-        body: JSON.stringify({
-          ...formData,
-          userRef: currentUser._id,
-        }),
-      });
+   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/listing/create`, {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  credentials: 'include',
+  body: JSON.stringify({
+    ...formData,
+    userRef: currentUser._id,
+  }),
+});
+
        const data = await res.json();
          console.log('✅ Listing Created:', data);
       setLoading(false);
