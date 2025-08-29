@@ -115,7 +115,7 @@ const uploadImage = async (file) => {
         return setError('Discount price must be lower than regular price');
        setLoading(true);
       setError(false);
-   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/listing/create`, {
+   const res = await fetch(`${API_BASE_URL}/api/listing/create`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   credentials: 'include',
