@@ -280,11 +280,12 @@ const res = await fetch(`${API_URL}/api/upload`, {
                    onChange={handleChange}
                 value={formData.regularPrice}
                 />
-                 
-               {formData.type === 'rent' && (
-                  <span className='text-xs'>(₹ 
-/ month)</span>
-                )}
+         {formData.type === 'rent' && (
+  <span className='text-xs'>
+    (₹ {Number(formData.regularPrice).toLocaleString("en-IN")} / month)
+  </span>
+)}
+
               </div>
 
             {formData.offer  &&(<div className="flex items-center gap-2">
@@ -300,10 +301,12 @@ const res = await fetch(`${API_URL}/api/upload`, {
                   value={formData.discountPrice}
                 />
                 
-                  {formData.type === 'rent' && (
-                    <span className='text-xs'>(₹
- / month)</span>
-                  )}
+            {formData.type === 'rent' && (
+  <span className='text-xs'>
+    (₹ {Number(formData.discountPrice).toLocaleString("en-IN")} / month)
+  </span>
+)}
+
               </div>
                 )}
             </div>
