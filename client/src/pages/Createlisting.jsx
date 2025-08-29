@@ -28,11 +28,13 @@ export default function Createlisting() {
 
   console.log(formData);
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'; // fallback if env is missing
+
 const uploadImage = async (file) => {
   const formData = new FormData();
   formData.append('image', file);
 
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/upload`, {
+  const res = await fetch(`${API_BASE_URL}/api/upload`, {
     method: 'POST',
     body: formData,
   });
@@ -43,7 +45,6 @@ const uploadImage = async (file) => {
   return data.imageUrl;
 };
 
- 
 
   const handleImageSubmit = async (e) => {
     if (files.length > 0 && files.length + formData.imageUrls.length < 7) {
