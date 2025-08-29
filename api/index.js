@@ -15,12 +15,24 @@ const __dirname=path.resolve();
 const app=express()
  app.use(cookieParser());
  app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173",              // local frontend
+  "https://rentease-90oe.onrender.com"  // deployed frontend
+];
+
 app.use(
   cors({
-    origin: 'http://localhost:5173',  
-    credentials: true,                
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
   })
-)
+);
+
  
 
 mongoose.connect(process.env.MONGO)
